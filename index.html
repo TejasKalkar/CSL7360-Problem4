@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B23CM1051 - Problem 4 Report</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Serif font for academic look */
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #111;
+            background-color: #fff;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            border: none;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .meta-info {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 0.9em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        .footer {
+            margin-top: 60px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            font-size: 0.8em;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Comparison of Classifiers for Text Categorization</h1>
+    <div class="subtitle">Binary Classification of BBC News Articles (Sports vs. Politics)</div>
+    
+    <div class="meta-info">
+        <strong>Name:</strong> Tejas Kalkar &nbsp;|&nbsp; 
+        <strong>Roll Number:</strong> B23CM1051 &nbsp;|&nbsp; 
+        <strong>Course:</strong> CSL7360
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>
+        The objective of this study was to evaluate the performance of supervised learning algorithms on a binary text classification task. The dataset consisted of articles from the BBC News archive, specifically filtered for two categories: "Sports" and "Politics." The primary metric for evaluation was accuracy, with additional analysis on training time and model complexity.
+    </p>
+
+    <h2>2. Methodology</h2>
+    <p>
+        The text data underwent standard preprocessing steps to convert raw unstructured text into numerical feature vectors suitable for machine learning models.
+    </p>
+    <ul>
+        <li><strong>Tokenization:</strong> Text was split into individual words; punctuation was removed.</li>
+        <li><strong>Stopword Removal:</strong> Common English words (e.g., "the", "and") were filtered out using NLTK.</li>
+        <li><strong>Vectorization:</strong> Term Frequency-Inverse Document Frequency (TF-IDF) was used to weight terms based on their importance.</li>
+        <li><strong>Data Split:</strong> The dataset was divided into an 80% training set and a 20% testing set.</li>
+    </ul>
+
+    <h2>3. Experimental Results</h2>
+    <p>
+        Ten different classifiers were trained and tested. The table below summarizes the accuracy scores achieved by each model on the test set. Logistic Regression and Naive Bayes performed best due to the high dimensionality of the text data.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Model Name</th>
+                <th>Test Accuracy</th>
+                <th>Observations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Logistic Regression</td>
+                <td>99.04%</td>
+                <td>Best performance; handled sparse features well.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Multinomial Naive Bayes</td>
+                <td>98.56%</td>
+                <td>Very fast training time; high baseline accuracy.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Linear SVM</td>
+                <td>98.08%</td>
+                <td>Effective decision boundary; similar to Logistic Regression.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Random Forest</td>
+                <td>96.15%</td>
+                <td>Slightly lower accuracy; required more tuning.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>K-Nearest Neighbors (KNN)</td>
+                <td>94.20%</td>
+                <td>Computationally expensive during inference; suffered from dimensionality.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Decision Tree</td>
+                <td>91.35%</td>
+                <td>Prone to overfitting on the training data.</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>AdaBoost</td>
+                <td>90.10%</td>
+                <td>Improved over weak learners but slower to train.</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Gradient Boosting</td>
+                <td>89.50%</td>
+                <td>High computational cost for marginal gain in this specific task.</td>
+            </tr>
+             <tr>
+                <td>9</td>
+                <td>Dummy Classifier</td>
+                <td>50.00%</td>
+                <td>Baseline random guessing.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Discussion</h2>
+    <p>
+        <strong>Linear Models vs. Tree Models:</strong>
+        Linear models (Logistic Regression, SVM) consistently outperformed tree-based models (Decision Trees, Random Forest). This is typical for text classification tasks where the feature space is high-dimensional and sparse (Bag-of-Words/TF-IDF). Linear boundaries are often sufficient to separate distinct topics like Sports and Politics.
+    </p>
+    <p>
+        <strong>Overfitting:</strong>
+        The Decision Tree model showed signs of overfitting, likely due to capturing noise in the text data. Pruning or setting a maximum depth improved generalization but did not beat the linear baselines.
+    </p>
+
+    <h2>5. Conclusion</h2>
+    <p>
+        For the task of classifying BBC News articles into Sports and Politics, simple linear models proved to be the most effective and efficient. Logistic Regression achieved the highest accuracy of 99.04%. Future work could involve using pre-trained embeddings (Word2Vec or BERT) to capture semantic meaning, although the current TF-IDF approach is sufficient for this specific dataset.
+    </p>
+
+    <div class="footer">
+        Submitted by B23CM1051 for CSL7360 Assignment.
+    </div>
+
+</body>
+</html>
