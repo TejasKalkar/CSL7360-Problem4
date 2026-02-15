@@ -24,7 +24,6 @@ Before training the models, an extensive analysis was performed. It is to unders
 ### Class Distribution
 The dataset is having a nearly balanced distribution. This is good for training.
 
-
 ### Article Lengths
 Most articles are having a length between 200 to 500 words. This provides enough tokens for the TF-IDF vectorizer to learn patterns.
 
@@ -33,8 +32,6 @@ I have generated N-grams (Bi-grams) to see the most frequent phrases.
 - **Politics:** Words like "Prime Minister", "General Election" are very frequent.
 - **Sports:** Words like "World Cup", "Champions League" are dominant.
 
-![Politics Phrases]
-![Sports Phrases]
 
 ## 4. Methodology & Techniques
 The pipeline implemented is following these steps:
@@ -70,13 +67,10 @@ The results obtained are exceptional. The two categories are highly separable.
 | 9 | Gradient Boosting | 97.31% |
 | 10 | Decision Tree | 95.70% |
 
-### Performance Visualization
-![Accuracy Plot]
 
 ### Why 100% Accuracy?
 To verify if the 100% accuracy is real or a bug, I plotted the **t-SNE** clusters. As seen in the image below, the two classes (Red and Blue) are completely separated in the vector space. There is no overlap. This is why linear models like SVM perform perfectly.
 
-![t-SNE Clusters]
 
 ## 6. Limitations of the System
 Even though the accuracy is 100%, there are some limitations observed by me:
